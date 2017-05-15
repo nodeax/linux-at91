@@ -729,6 +729,13 @@
 		};
 	};
 
+	firmware {
+		optee {
+			compatible = "linaro,optee-tz";
+			method = "smc";
+		};
+	};
+
 	gpio_keys {
 		compatible = "gpio-keys";
 
@@ -764,4 +771,17 @@
 			linux,default-trigger = "heartbeat";
 		};
 	};
+
+	reserved-memory {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		/* op-tee secure memory and shared memory */
+		optee@0x30000000 {
+			reg = <0x30000000 0xC00000>;
+			no-map;
+		};
+	};
+
 };
